@@ -1,5 +1,6 @@
 /*
 To create a Node project, we must install express and body-parser packages
+Make sure NodeJS is at least V.18
 "npm init"
 "npm install express body-parser"
 */
