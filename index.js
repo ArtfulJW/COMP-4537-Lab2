@@ -36,9 +36,18 @@ app.get('/', function(request, response){
 app.post('/chatbot', async (request, response) => {
     const message = request.body.message;
     const number = message.match(/\d+/);
+    const API_URL = `http://numbersapi.com/${number}`
 
     console.log(`Pulling API Response for ${number}`);
-    const API_CALL = await fetchNumber(number);
+    
+    const API_CALL = await fetch(API_URL).then(response => response.text()).then(data =>{
+        console.log("==Recieved API Message== \n" + data);
+        return data;
+    }).catch(error =>{
+        console.log(error);
+        return "error";
+    });;
+
     console.log("Finished API_CALL: \n" + API_CALL);
     response.send(API_CALL);
 
