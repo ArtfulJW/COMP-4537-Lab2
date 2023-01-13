@@ -1,5 +1,27 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Must place jQuery on the top of HTML 
+        $(document).ready(function() {
+            $('#chatbot-form').submit(function(event) {
+            event.preventDefault();
+            // Handle form submission  
+            const message = $('#chatbot-input').val();
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost:8000/chatbot',
+                    data: {
+                        message: message
+                    },
+                    success: function(response) {
+                        // alert("Success: " + response);
+                        $("#chatbot-response").append(`<li>${response}</li>`);
+                    }
+                });
+            });
+        }); 
+    </script>
     <head>
         <meta charset="utf-8">
         <title>COMP-4536 Lab-2</title>
@@ -7,10 +29,16 @@
     <body>
         <h1>Chatbot</h1>
         <div>
-            <form method="post" action="/chatbot">
+            <!-- <form method="post" action="/chatbot">
                 <input placeholder="Input a number" type="text" name="message">
                 <input type="submit" value="submit">
+            </form> -->
+            <form id="chatbot-form">
+                <label>Enter a message:</label>
+                <input type="text" id="chatbot-input">
+                <button type="submit">Submit</button>
             </form>
+            <div id="chatbot-response"></div>
         </div>
     </body>
 </html>
