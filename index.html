@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <script type="text/javascript">
         // Must place jQuery on the top of HTML 
         $(document).ready(function() {
             $('#chatbot-form').submit(function(event) {
@@ -10,7 +10,7 @@
             const message = $('#chatbot-input').val();
                 $.ajax({
                     type: 'POST',
-                    url: 'http://localhost:8000/chatbot',
+                    url: '/Lookup/Home/GetUsers',
                     data: {
                         message: message
                     },
