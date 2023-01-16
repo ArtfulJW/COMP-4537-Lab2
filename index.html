@@ -10,7 +10,7 @@
             const message = $('#chatbot-input').val();
                 $.ajax({
                     type: 'POST',
-                    url: '/Lookup/Home/GetUsers',
+                    url: '/chatbot',
                     data: {
                         message: message
                     },
