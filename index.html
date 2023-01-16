@@ -16,12 +16,46 @@
                     },
                     success: function(response) {
                         // alert("Success: " + response);
-                        $("#chatbot-response").append(`<li>${response}</li>`);
+                        // $("#chatbot-response").append(`<li>${response}</li>`);
+
+                        let newMessage = $('<div>', {
+                            class: 'message'
+                        }).text(response.text);
+                        let removeButton = $('<button>', {
+                            class: 'remove-button'
+                        }).text('Remove');
+                        newMessage.append(removeButton);
+                        newMessage.append(response);
+                        $('#chatbot-response').append(newMessage);
+
                     }
                 });
             });
         }); 
+        // Detect Click Event on "remove-button". 
+        $(document).on('click', '.remove-button', function() {
+            $(this).parent().remove();
+        });
     </script>
+    <style>
+        #chatbot-response{
+            height: 300px;
+            overflow-y: auto;
+        }
+        .message {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        .remove-button {
+            float: right;
+            background-color: #ff0000;
+            color: #ffffff;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
     <head>
         <meta charset="utf-8">
         <title>COMP-4536 Lab-2</title>
