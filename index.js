@@ -39,6 +39,7 @@ app.get('/', function(request, response){
 app.post('/chatbot', async (request, response) => {
     const message = request.body.message;
     const number = message.match(/\d+/);
+    console.log("Recieved Number: " + number);
     const API_URL = `http://numbersapi.com/${number}`
 
     console.log(`Pulling API Response for ${number}`);
